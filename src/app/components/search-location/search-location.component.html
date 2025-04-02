@@ -1,0 +1,23 @@
+<div class="grid grid-cols-1 ">
+    <div class="bg-gray-100 text-gray-700 p-6 flex flex-col justify-center content-center gap-4">
+        <h2 class="mt-2 text-2xl">Get the latest weather updates for your location.</h2>
+            <mat-form-field class="w-1/4">
+              <mat-label>Search for a location</mat-label>
+              <input type="text"
+                     aria-label="Location"
+                     matInput
+                     [matAutocomplete]="auto"
+                     (keyup)="HandleKeyUp($event)">
+                
+                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCityName">
+                        <ng-container *ngIf="locations$ | async as locations">
+                          <ng-container *ngIf="locations.list.length > 0">
+                            <mat-option *ngFor="let city of locations.list" [value]="city" (onSelectionChange)="onCitySelected(city)">
+                              {{ city.name }}, {{ city.sys.country }}
+                            </mat-option>
+                          </ng-container>
+                        </ng-container>
+                      </mat-autocomplete>
+            </mat-form-field>
+    </div>
+  </div>
