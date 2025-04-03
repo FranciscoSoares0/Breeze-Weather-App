@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { OpenWeatherService } from '../../services/open-weather.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,7 +9,8 @@ import { WeatherDetailsComponent } from '../weather-details/weather-details.comp
   selector: 'app-location-details',
   imports: [CommonModule,MatIconModule,ForecastComponent,WeatherDetailsComponent],
   templateUrl: './location-details.component.html',
-  styleUrl: './location-details.component.css'
+  styleUrl: './location-details.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class LocationDetailsComponent {
 

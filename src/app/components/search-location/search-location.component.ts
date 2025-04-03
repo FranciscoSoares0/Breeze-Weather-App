@@ -1,12 +1,11 @@
-import {Component, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { OpenWeatherService } from '../../services/open-weather.service';
-import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { City } from '../../interfaces/city';
 
 @Component({
@@ -20,7 +19,8 @@ import { City } from '../../interfaces/city';
     CommonModule
   ],
   templateUrl: './search-location.component.html',
-  styleUrl: './search-location.component.css'
+  styleUrl: './search-location.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchLocationComponent {
   private openWeatherService = inject(OpenWeatherService);

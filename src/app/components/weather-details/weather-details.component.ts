@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { WeatherEntry } from '../../interfaces/forecast';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-weather-details',
   imports: [MatIconModule,CommonModule],
   templateUrl: './weather-details.component.html',
-  styleUrl: './weather-details.component.css'
+  styleUrl: './weather-details.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherDetailsComponent {
 
