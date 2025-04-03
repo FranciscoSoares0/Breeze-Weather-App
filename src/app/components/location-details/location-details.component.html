@@ -1,27 +1,40 @@
-<div *ngIf="weatherForecast$ | async as weatherForecast" class="h-3/4 container mx-auto mt-4">
+<div
+  *ngIf="weatherForecast$ | async as weatherForecast"
+  class="h-3/4 container mx-auto mt-4 p-4 grid grid-cols-2 gap-4"
+>
+  <div>
     <h3 class="text-sky-500">{{ now_date() }}</h3>
-    <h2  class="text-4xl text-gray-800" >{{ weatherForecast.city.name }}, {{ weatherForecast.city.country }}</h2>
-    <div *ngIf="weatherForecast.list.length > 0" class="flex flex-col gap-2 text-gray-700">
-        <div class="flex items-center gap-4">
-            <img width="50" src="https://openweathermap.org/img/wn/{{ weatherForecast.list[0].weather[0].icon }}.png" alt="{{weatherForecast.list[0].weather[0].description}}">
-            <h3 class="text-2xl">{{weatherForecast.list[0].main.temp | number:'1.0-0'}} ºC</h3>
-        </div>
-        <h4>Feels like: {{ weatherForecast.list[0].main.feels_like }}°C. {{ weatherForecast.list[0].weather[0].description }}</h4>
+    <div class="flex gap-4">
+      <h2 class="text-4xl text-gray-800">
+        {{ weatherForecast.city.name }}, {{ weatherForecast.city.country }}
+      </h2>
+      <img class="rounded-xs" width="60" src="https://flagcdn.com/w320/{{weatherForecast.city.country | lowercase}}.png" alt="">
     </div>
-    <hr class="text-gray-800">
-    <h3 class="text-2xl text-gray-700">5 day forecast</h3>
     
-    <ul>
-      <li *ngFor="let entry of weatherForecast.list">
-        <strong>{{ entry.dt_txt }}</strong> <br />
-        <img src="https://openweathermap.org/img/wn/{{ entry.weather[0].icon }}.png" 
-             alt="{{ entry.weather[0].description }}">
-        <p>{{ entry.weather[0].description }}</p>
-        <p>🌡️ Temperature: {{ entry.main.temp }}°C (Feels like: {{ entry.main.feels_like }}°C)</p>
-        <p>💨 Wind Speed: {{ entry.wind.speed }} m/s</p>
-        <p>☁️ Cloud Cover: {{ entry.clouds.all }}%</p>
-        <p>🌧️ Rain: {{ entry.rain?.['3h'] || 0 }} mm</p>
-      </li>
-    </ul>
+    <div
+      *ngIf="weatherForecast.list.length > 0"
+      class="flex flex-col gap-2 text-gray-700"
+    >
+      <div class="flex items-center gap-4">
+        <img
+          width="50"
+          src="https://openweathermap.org/img/wn/{{
+            weatherForecast.list[0].weather[0].icon
+          }}.png"
+          alt="{{ weatherForecast.list[0].weather[0].description }}"
+        />
+        <h3 class="text-2xl">
+          {{ weatherForecast.list[0].main.temp | number : "1.0-0" }} ºC
+        </h3>
+      </div>
+      <h4>
+        Feels like: {{ weatherForecast.list[0].main.feels_like }}°C.
+        {{ weatherForecast.list[0].weather[0].description }}
+      </h4>
+    </div>
   </div>
-  
+  <div>
+    <app-weather-details [weather]="weatherForecast.list[0]"></app-weather-details>
+  </div>
+  <app-forecast class="col-span-2"></app-forecast>
+</div>

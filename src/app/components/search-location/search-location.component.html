@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 ">
-    <div class="bg-gray-100 text-gray-700 p-6 flex flex-col justify-center content-center gap-4">
+    <div class="bg-zinc-100 text-gray-700 p-6 flex flex-col justify-center content-center gap-4">
         <h2 class="mt-2 text-2xl">Get the latest weather updates for your location.</h2>
-            <mat-form-field class="w-1/4">
+            <mat-form-field class="w-full md:w-2/3  xl:w-1/2">
               <mat-label>Search for a location</mat-label>
               <input type="text"
                      aria-label="Location"
@@ -13,7 +13,13 @@
                         <ng-container *ngIf="locations$ | async as locations">
                           <ng-container *ngIf="locations.list.length > 0">
                             <mat-option *ngFor="let city of locations.list" [value]="city" (onSelectionChange)="onCitySelected(city)">
-                              {{ city.name }}, {{ city.sys.country }}
+                              <div class="flex items-center gap-6 w-full">
+                                <h4 class="max-w-xs">{{ city.name }}, {{ city.sys.country }}</h4>
+                                <img class="rounded-xs" width="30" src="https://flagcdn.com/w320/{{city.sys.country | lowercase}}.png" alt="">
+                                <h4>{{city.main.temp}} ºC</h4>
+                                <img width="50" src="https://openweathermap.org/img/wn/{{city.weather[0].icon}}.png" alt="">
+                                <small class="text-sm text-gray-500">{{city.coord.lat}},{{city.coord.lon}}</small>
+                              </div>
                             </mat-option>
                           </ng-container>
                         </ng-container>

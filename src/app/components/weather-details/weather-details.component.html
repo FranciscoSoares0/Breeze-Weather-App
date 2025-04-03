@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-2 text-gray-700" *ngIf="weather()">
+    <div class="flex gap-2 items-center">
+      <mat-icon>device_thermostat</mat-icon>
+      <p>
+        Temperature: {{ weather()?.main?.temp }}°C (Feels like:
+        {{ weather()?.main?.feels_like }}°C)
+      </p>
+    </div>
+    <div class="flex gap-2 items-center">
+      <mat-icon>air</mat-icon>
+      <p>Wind Speed: {{ weather()?.wind?.speed }} m/s</p>
+    </div>
+    <div class="flex gap-2 items-center">
+      <mat-icon>cloud</mat-icon>
+      <p>Cloud Cover: {{ weather()?.clouds?.all }}%</p>
+    </div>
+    <div class="flex gap-2 items-center">
+      <mat-icon>umbrella</mat-icon>
+      <p>Rain: {{ weather()?.rain?.['3h'] || 0 }} mm</p>
+    </div>
+  </div>

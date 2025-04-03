@@ -6,7 +6,7 @@ export interface WeatherData {
   city: City;
 }
 
-interface WeatherEntry {
+export interface WeatherEntry {
   dt: number;
   main: MainWeather;
   weather: WeatherDescription[];

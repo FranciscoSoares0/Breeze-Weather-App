@@ -1,18 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { OpenWeatherService } from '../../services/open-weather.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { ForecastComponent } from '../forecast/forecast.component';
+import { WeatherDetailsComponent } from '../weather-details/weather-details.component';
 
 @Component({
   selector: 'app-location-details',
-  imports: [CommonModule],
+  imports: [CommonModule,MatIconModule,ForecastComponent,WeatherDetailsComponent],
   templateUrl: './location-details.component.html',
   styleUrl: './location-details.component.css'
 })
 export class LocationDetailsComponent {
 
   private openWeatherService = inject(OpenWeatherService);
-
-  selectedLocation$ = this.openWeatherService.selectedLocation$;
 
   weatherForecast$ = this.openWeatherService.weatherForecast$;
 
@@ -21,7 +22,8 @@ export class LocationDetailsComponent {
   constructor(){
     this.weatherForecast$.subscribe((data) => {
       console.log(data)
-    })
+    });
+
   }
 
   private getFormattedDateTime(): string {

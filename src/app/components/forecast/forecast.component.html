@@ -1,0 +1,16 @@
+<div class="flex flex-col gap-4" *ngIf="sortedForecast$ | async as sortedForecast">
+  <hr class="text-sky-500" />
+  <h3 class="text-2xl text-gray-700">5 day forecast</h3>
+
+  <ul class="flex flex-col gap-6">
+    <li *ngFor="let day of sortedForecast" >
+      <strong class="text-sky-500">{{ day.date | date:'EEE, MMM dd'}}</strong>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 mt-4">
+        <div *ngFor="let hour of day.weather" class="flex flex-col gap-2">
+            <strong>{{hour.dt_txt | date:'shortTime'}}</strong>
+            <app-weather-details [weather]="hour"></app-weather-details>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
