@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 import { City, FindCitiesResponse } from '../interfaces/city';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 import { WeatherData, WeatherEntry } from '../interfaces/forecast';
 
 @Injectable({
