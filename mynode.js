@@ -5,8 +5,8 @@ const checkSign = '\u{2705}';
 const dotenv = require('dotenv').config({path: 'src/.env'}); ;
 
 const envFile = `export const environment = {
-    apiUrl='${process.env.apiUrl}',
-    apiKey='${process.env.apiKey}'
+    apiUrl:'${process.env.apiUrl}',
+    apiKey:'${process.env.apiKey}'
 };
 `;
 const targetPath = path.join(__dirname, './src/environments/environment.prod.ts');
